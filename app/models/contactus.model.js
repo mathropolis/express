@@ -2,14 +2,14 @@ const sql = require("./db.js");
 
 // constructor
 const Contact = function(user) {
-  this.name = user.first_name;
-  this.email  = user.last_name;
-  this.mobile = user.email;
+  this.name = user.name;
+  this.email  = user.email;
+  this.mobile = user.mobile;
   this.message = user.message;
 };
 
 Contact.create = (contact, result) => {
-  sql.query("INSERT INTO users SET ?", user, (err, res) => {
+  sql.query("INSERT INTO contact_us SET ?", contact, (err, res) => {
     // res.send("after insert");
     if (err) {
       console.log("error: ", err);
@@ -17,8 +17,8 @@ Contact.create = (contact, result) => {
       return;
     }
 
-    console.log("created users: ", { id: res.insertId, ...user });
-    result(null, { id: res.insertId, ...user });
+    console.log("created contact: ", { id: res.insertId, ...contact });
+    result(null, { id: res.insertId, ...contact });
   });
 };
 
