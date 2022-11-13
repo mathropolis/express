@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/adnanali8648/backend.epapa.eu
+    - /bin/cp -r * $DEPLOYPATH
