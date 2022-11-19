@@ -6,7 +6,35 @@ module.exports = app => {
   // Create a new Tutorial
   // router.post("/", tutorials.create);
   router.get("/",function (req, res) {
-    res.send('Hello World tttt sfs!')
+     // var nodemailer = require('nodemailer');
+     //  var transporter = nodemailer.createTransport({
+     //    service: 'Gmail',
+     //    // service: 'smtp',
+     //    auth: {
+     //      // user: 'nasir5074@gmail.com',
+     //      // pass: 'iclxqpozavdlejih'
+     //      user: 'adnan.ali8648@gmail.com',
+     //      pass: 'iclxqpozavdlejih'
+     //    }
+     //  });
+
+     //  var mailOptions = {
+     //    from: 'info@epapa.eu',
+     //    to: 'adnan.ali8648@gmail.com',
+     //    subject: 'You have received new query.',
+     //    text: 'You have new query from !'
+     //  };
+
+     //  transporter.sendMail(mailOptions, function(error, info){
+     //    if (error) {
+     //      // return error;
+     //      res.send(error);
+     //    } else {
+     //      // return 'Email sent: ' + info.response;
+     //      res.send('Email sent: ' + info.response);
+     //    }
+     //  });
+    // res.send('Hello World tttt sfs!');
   });
   // Retrieve all Tutorials
   // router.get("/", contactus.findAll);

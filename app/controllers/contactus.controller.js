@@ -19,15 +19,47 @@ exports.create = async (req, res) => {
   // res.send(user);
   // Save Tutorial in the database
   Contact.create(insert_object, (err, data) => {
-    if (err)
+    if (err){
       res.status(500).send({
         message:
           err.message || "Some error occurred while creating the User."
       });
-    else res.send(data);
+    }else{
+     res.send(sendMail(insert_object));
+    }
   });
 };
+sendMail=(user_info)=>{
+  var nodemailer = require('nodemailer');
+      var transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        // service: 'smtp',
+        auth: {
+          user: 'nasir5074@gmail.com',
+          pass: 'iclxqpozavdlejih'
+          // user: 'adnan.ali8648@gmail.com',
+          // pass: 'iclxqpozavdlejih'
+        }
+      });
 
+      var mailOptions = {
+        from: user_info.email,
+        to: 'nasir5074@gmail.com',
+        to: 'adnan.ali8648@gmail.com',
+        subject: 'You have received new query.',
+        text: 'You have new query from '+user_info.name
+      };
+
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          // return error;
+          res.send(error);
+        } else {
+          return 'Email sent: ' + info.response;
+          // res.send('Email sent: ' + info.response);
+        }
+      });
+};
 // Retrieve all Tutorials from the database (with condition).
 // exports.findAll = (req, res) => {
 //   const title = req.query.title;
