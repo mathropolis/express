@@ -45,7 +45,7 @@ sendMail=(user_info)=>{
       var mailOptions = {
         from: user_info.email,
         to: 'nasir5074@gmail.com',
-        to: 'adnan.ali8648@gmail.com',
+        // to: 'adnan.ali8648@gmail.com',
         subject: 'You have received new query.',
         text: 'You have new query from '+user_info.name
       };
