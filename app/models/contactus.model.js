@@ -41,24 +41,20 @@ Contact.create = (contact, result) => {
 //   });
 // };
 
-// User.getAll = (title, result) => {
-//   let query = "SELECT * FROM users";
+Contact.getAll = (title, result) => {
+  let query = "SELECT * FROM contact_us";
 
-//   if (title) {
-//     query += ` WHERE title LIKE '%${title}%'`;
-//   }
+  sql.query(query, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
 
-//   sql.query(query, (err, res) => {
-//     if (err) {
-//       console.log("error: ", err);
-//       result(null, err);
-//       return;
-//     }
-
-//     console.log("tutorials: ", res);
-//     result(null, res);
-//   });
-// };
+    console.log("Contacts: ", res);
+    result(null, res);
+  });
+};
 
 
 

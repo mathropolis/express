@@ -1,9 +1,21 @@
 const User = require("../models/user.model.js");
 var bcrypt = require('bcryptjs');
-// Create and Save a new Tutorial
+// Create and Save a new user
 exports.create = async (req, res) => {
- // res.send(req.body); 
-  // Validate request
+   // var user_exist =  User.checkUser(req.body.email).then(function (restaurant) {
+   //      retvalue = restaurant.Name;
+   //      console.log('restaurantName 1(' + id + ')' + retvalue);   
+   //      return retvalue;           
+   //  }).catch(function(error){
+   //      return 'Error';
+   //  });
+  // var user_exist = await User.checkUser(req.body.email);
+  // console.log("calle user cont=".user_exist);
+  // if( user_exist > 0 ){
+  //   res.send(user_exist);
+  //   return;
+  // }
+  // Validate request=====================================================
   if (!req.body || Object.keys(req.body).length === 0) {
     res.status(400).send({
       message: "Content can not be empty!"

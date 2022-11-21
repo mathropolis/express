@@ -5,7 +5,7 @@ module.exports = app => {
 
   // Create a new Tutorial
   // router.post("/", tutorials.create);
-  router.get("/",function (req, res) {
+  // router.get("/",function (req, res) {
      // var nodemailer = require('nodemailer');
      //  var transporter = nodemailer.createTransport({
      //    service: 'Gmail',
@@ -35,9 +35,9 @@ module.exports = app => {
      //    }
      //  });
     // res.send('Hello World tttt sfs!');
-  });
+  // });
   // Retrieve all Tutorials
-  // router.get("/", contactus.findAll);
+  router.get("/", contactus.findAll);
 
 
   // Retrieve all published Tutorials

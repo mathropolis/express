@@ -5,19 +5,33 @@ const User = function(user) {
   this.first_name = user.first_name;
   this.last_name  = user.last_name;
   this.email      = user.email;
+  this.password   = user.password;
 };
+checkUser = (email)=>{
 
-User.create = (user, result) => {
+  sql.query(`SELECT * FROM users WHERE email = '${email}'`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      // result(err, null);
+      return;
+    }
+    if (res.length > 0 ) {
+      return res.length;
+    }
+  });
+};
+User.create = async (user, result) => {
+  var exist_user = await checkUser(user.email);
+  console.log("user exist:"+exist_user);
   sql.query("INSERT INTO users SET ?", user, (err, res) => {
     // res.send("after insert");
     if (err) {
-      console.log("error: ", err);
-      result(err, null);
-      return;
+      return ;
     }
 
     console.log("created users: ", { id: res.insertId, ...user });
-    result(null, { id: res.insertId, ...user });
+    // result(null, { id: res.insertId, ...user });
+    return user;
   });
 };
 

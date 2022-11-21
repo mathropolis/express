@@ -61,18 +61,18 @@ sendMail=(user_info)=>{
       });
 };
 // Retrieve all Tutorials from the database (with condition).
-// exports.findAll = (req, res) => {
-//   const title = req.query.title;
+exports.findAll = (req, res) => {
+  const title = req.query.title;
 
-//   User.getAll(title, (err, data) => {
-//     if (err)
-//       res.status(500).send({
-//         message:
-//           err.message || "Some error occurred while retrieving tutorials."
-//       });
-//     else res.send(data);
-//   });
-// };
+  Contact.getAll(title, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving tutorials."
+      });
+    else res.send(data);
+  });
+};
 
 // // Find a single Tutorial by Id
 // exports.findOne = (req, res) => {
