@@ -20,9 +20,7 @@ checkUser = (email)=>{
     }
   });
 };
-User.create = async (user, result) => {
-  var exist_user = await checkUser(user.email);
-  console.log("user exist:"+exist_user);
+User.create =  (user, result) => {
   sql.query("INSERT INTO users SET ?", user, (err, res) => {
     // res.send("after insert");
     if (err) {
@@ -30,11 +28,26 @@ User.create = async (user, result) => {
     }
 
     console.log("created users: ", { id: res.insertId, ...user });
-    // result(null, { id: res.insertId, ...user });
+    result(null, { id: res.insertId, ...user });
     return user;
   });
 };
+User.login =  (email,password,result)=>{
+  console.log(email+"==="+password);
+  sql.query(`SELECT * FROM users WHERE email = '${email}'`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
 
+    if (res.length) {
+      console.log("user found: ", res[0]['password']);
+      result(err, res[0]);
+      return res;
+    }
+  });
+}
 User.findById = (id, result) => {
   sql.query(`SELECT * FROM users WHERE id = ${id}`, (err, res) => {
     if (err) {

@@ -56,6 +56,27 @@ exports.findAll = (req, res) => {
   });
 };
 
+exports.login = async (req,res)=>{
+  var email    = req.body.email;
+  var password = req.body.password;
+  const encryptedPassword = await bcrypt.hash(password, 10);
+  User.login(email,encryptedPassword,(err, data) => {
+    if(err){
+       res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving tutorials."
+      });
+    }else{
+      console.log(encryptedPassword+"==="+data.password);
+      bcrypt.compare(password, data.password, function(err, res) {
+        console.log("bcrypt"+res);
+      });
+
+       res.send(data);
+    }
+  });
+}
+
 // Find a single Tutorial by Id
 exports.findOne = (req, res) => {
   Tutorial.findById(req.params.id, (err, data) => {

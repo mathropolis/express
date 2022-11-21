@@ -13,7 +13,7 @@ module.exports = app => {
   router.post("/register", user.create);
 
   // Retrieve a single Tutorial with id
-  router.get("/login", user.findOne);
+  router.post("/login", user.login);
 
   // Update a Tutorial with id
   router.put("/logout", user.update);
